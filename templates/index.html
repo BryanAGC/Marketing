@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gráficas del Notebook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f7f7f7;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .grafica {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            max-width: 700px;
+            text-align: center;
+        }
+        .grafica h2 {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gráficas encontradas</h1>
+    {% for elem in elementos %}
+        <div class="grafica">
+            <h2>{{ elem.titulo }}</h2>
+            {% if elem.tipo == 'imagen' %}
+                <img src="data:image/png;base64,{{ elem.contenido }}">
+            {% elif elem.tipo == 'plotly' %}
+                <div>{{ elem.contenido | safe }}</div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</body>
+</html>
